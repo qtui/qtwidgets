@@ -1,8 +1,6 @@
 package qtwidgets
 
 import (
-	"log"
-
 	"github.com/qtui/qtcore"
 	"github.com/qtui/qtrt"
 )
@@ -30,40 +28,10 @@ func (me *QApplication) Exit(code int) {
 	qtrt.Callany[int](nil, me)
 }
 
-type QAbstractButton struct {
-	*QWidget
-}
-
-func QAbstractButtonFromptr(ptr voidptr) *QAbstractButton {
-	me := &QAbstractButton{QWidgetFromptr(ptr)}
-	return me
-}
-
-func (me *QAbstractButton) SetText(text string) {
-	qtrt.Callany[int](nil, me, text)
-}
-
-type QPushButton struct {
-	*QAbstractButton
-}
-
-func QPushButtonFromptr(ptr voidptr) *QPushButton {
-	me := &QPushButton{QAbstractButtonFromptr(ptr)}
-	return me
-}
-
-func NewQPushButton() *QPushButton {
-	rvp := qtrt.Callany[voidptr](nil, nil, nil)
-	log.Println(rvp)
-
-	return QPushButtonFromptr(rvp)
-}
-
-func (me *QPushButton) SetFlat(b bool) {
-	qtrt.Callany[int](nil, me, b)
-}
-
 func (me *QWidget) Show() {
+	qtrt.Callany[int](nil, me)
+}
+func (me *QWidget) Hide() {
 	qtrt.Callany[int](nil, me)
 }
 
@@ -74,4 +42,47 @@ type QWidget struct {
 func QWidgetFromptr(ptr voidptr) *QWidget {
 	me := &QWidget{qtrt.CObjectFromptr(ptr)}
 	return me
+}
+func (me *QWidget) Dtor() {
+	qtrt.Callany0(nil, me)
+}
+
+// size=8
+type QSize struct {
+	W int32
+	H int32
+}
+
+func (me *QWidget) Size() QSize {
+	rv := qtrt.Callany[QSize](nil, me)
+	return rv
+}
+func (me *QWidget) Width() int {
+	return qtrt.Callany[int](nil, me)
+}
+func (me *QWidget) Height() int {
+	return qtrt.Callany[int](nil, me)
+}
+func (me *QWidget) X() int {
+	return qtrt.Callany[int](nil, me)
+}
+func (me *QWidget) Y() int {
+	return qtrt.Callany[int](nil, me)
+}
+
+type QMainWindow struct {
+	*QWidget
+}
+
+func QMainWindowFromptr(ptr voidptr) *QMainWindow {
+	return &QMainWindow{QWidgetFromptr(ptr)}
+}
+func (me *QMainWindow) Dtor() {
+	qtrt.Callany0(nil, me)
+}
+
+func NewQMainWindow(parent *QWidget, flags int) *QMainWindow {
+	// log.Println(qtclzsz.Get("QMainWindow"))
+	cthis := qtrt.Callany[voidptr](nil, nil, parent, flags)
+	return QMainWindowFromptr(cthis)
 }
