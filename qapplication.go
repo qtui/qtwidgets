@@ -18,16 +18,16 @@ func QApplicationFromptr(ptr voidptr) *QApplication {
 
 // QApplication::QApplication(int&, char**, int)
 func NewQApplication(argv []string, flags int) *QApplication {
-	rvp := qtrt.Callany(nil, nil, len(argv), argv, flags)
-	return QApplicationFromptr(rvp.Ptr())
+	rvp := qtrt.Callany[voidptr](nil, nil, len(argv), argv, flags)
+	return QApplicationFromptr(rvp)
 }
 
 func (me *QApplication) Exec() int {
-	rvp := qtrt.Callany(nil, me.GetCthis())
-	return rvp.Int()
+	rvp := qtrt.Callany[int](nil, me)
+	return rvp
 }
 func (me *QApplication) Exit(code int) {
-	qtrt.Callany(nil, me.GetCthis())
+	qtrt.Callany[int](nil, me)
 }
 
 type QAbstractButton struct {
@@ -40,7 +40,7 @@ func QAbstractButtonFromptr(ptr voidptr) *QAbstractButton {
 }
 
 func (me *QAbstractButton) SetText(text string) {
-	qtrt.Callany(nil, me.GetCthis(), text)
+	qtrt.Callany[int](nil, me, text)
 }
 
 type QPushButton struct {
@@ -53,18 +53,18 @@ func QPushButtonFromptr(ptr voidptr) *QPushButton {
 }
 
 func NewQPushButton() *QPushButton {
-	rvp := qtrt.Callany(nil, nil, nil)
-	log.Println(rvp.Ptr())
+	rvp := qtrt.Callany[voidptr](nil, nil, nil)
+	log.Println(rvp)
 
-	return QPushButtonFromptr(rvp.Ptr())
+	return QPushButtonFromptr(rvp)
 }
 
 func (me *QPushButton) SetFlat(b bool) {
-	qtrt.Callany(nil, me.GetCthis(), b)
+	qtrt.Callany[int](nil, me, b)
 }
 
 func (me *QWidget) Show() {
-	qtrt.Callany(nil, me.GetCthis())
+	qtrt.Callany[int](nil, me)
 }
 
 type QWidget struct {
