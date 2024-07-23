@@ -23,6 +23,7 @@ require (
 	github.com/qtui/qtclzsz v0.0.0 // indirect
 	github.com/qtui/qtqt v0.0.0 // indirect
 	github.com/qtui/qtrt v0.0.0
+    github.com/qtui/qtcore v0.0.0
 	github.com/qtui/qtsyms v0.0.0 // indirect
 	golang.org/x/sys v0.19.0 // indirect
 
@@ -39,6 +40,7 @@ replace github.com/qtui/qtclzsz => ../../qtui/qtclzsz
 replace github.com/qtui/qtsyms => ../../qtui/qtsyms
 
 replace github.com/qtui/qtqt => ../../qtui/qtqt
+replace github.com/qtui/qtcore => ../../qtui/qtcore
 
 replace github.com/qtui/qtmeta => ../../qtui/qtmeta
 
