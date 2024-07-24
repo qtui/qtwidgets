@@ -3,6 +3,7 @@ package qtwidgets
 import (
 	"log"
 
+	"github.com/kitech/gopp"
 	"github.com/qtui/qtrt"
 )
 
@@ -16,7 +17,7 @@ func QAbstractButtonFromptr(ptr voidptr) *QAbstractButton {
 }
 
 func (me *QAbstractButton) SetText(text string) {
-	qtrt.Callany[int](nil, me, text)
+	qtrt.Callany0(me, text)
 }
 
 type QPushButton struct {
@@ -28,13 +29,21 @@ func QPushButtonFromptr(ptr voidptr) *QPushButton {
 	return me
 }
 
-func NewQPushButton() *QPushButton {
-	rvp := qtrt.Callany[voidptr](nil, nil, nil)
+func NewQPushButtonz0(parent ...*QWidget) *QPushButton {
+	var p = gopp.FirstofGv(parent)
+	rvp := qtrt.Callany[voidptr](nil, p)
+	log.Println(rvp)
+
+	return QPushButtonFromptr(rvp)
+}
+func NewQPushButton(text string, parent ...*QWidget) *QPushButton {
+	var p = gopp.FirstofGv(parent)
+	rvp := qtrt.Callany[voidptr](nil, text, p)
 	log.Println(rvp)
 
 	return QPushButtonFromptr(rvp)
 }
 
 func (me *QPushButton) SetFlat(b bool) {
-	qtrt.Callany[int](nil, me, b)
+	qtrt.Callany0(me, b)
 }

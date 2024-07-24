@@ -42,6 +42,13 @@ func QLayoutFromptr(ptr voidptr) *QLayout {
 	return &QLayout{QLayoutItemFromptr(ptr)}
 }
 
+func (me *QLayout) AddWidget(w *QWidget) {
+	qtrt.Callany0(me, w)
+}
+func (me *QLayout) RemoveWidget(w *QWidget) {
+	qtrt.Callany0(me, w)
+}
+
 type QBoxLayout struct {
 	*QLayout
 }
@@ -64,6 +71,10 @@ type QVBoxLayout struct {
 
 func QVBoxLayoutFromptr(ptr voidptr) *QVBoxLayout {
 	return &QVBoxLayout{QBoxLayoutFromptr(ptr)}
+}
+func NewQVBoxLayout(parent *QWidget) *QVBoxLayout {
+	rv := qtrt.Callany[voidptr](nil, parent)
+	return QVBoxLayoutFromptr(rv)
 }
 
 type QGridLayout struct {
