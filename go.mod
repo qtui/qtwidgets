@@ -4,7 +4,7 @@ go 1.22.3
 
 require github.com/kitech/gopp v0.0.0
 
-require github.com/kitech/gopp/cgopp v0.0.0
+require github.com/kitech/gopp/cgopp v0.0.0 // indirect
 
 require github.com/kitech/dl v0.0.0-20201225001532-be4f4faa4070 // indirect
 
@@ -18,12 +18,13 @@ require (
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/huandu/xstrings v1.4.0 // indirect
 	github.com/lytics/base62 v0.0.0-20180808010106-0ee4de5a5d6d // indirect
+	github.com/orcaman/concurrent-map/v2 v2.0.1 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/qtui/miscutil v0.0.0 // indirect
 	github.com/qtui/qtclzsz v0.0.0 // indirect
+	github.com/qtui/qtcore v0.0.0
 	github.com/qtui/qtqt v0.0.0 // indirect
 	github.com/qtui/qtrt v0.0.0
-    github.com/qtui/qtcore v0.0.0
 	github.com/qtui/qtsyms v0.0.0 // indirect
 	golang.org/x/sys v0.19.0 // indirect
 
@@ -40,6 +41,7 @@ replace github.com/qtui/qtclzsz => ../../qtui/qtclzsz
 replace github.com/qtui/qtsyms => ../../qtui/qtsyms
 
 replace github.com/qtui/qtqt => ../../qtui/qtqt
+
 replace github.com/qtui/qtcore => ../../qtui/qtcore
 
 replace github.com/qtui/qtmeta => ../../qtui/qtmeta
