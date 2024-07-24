@@ -39,21 +39,27 @@ func (me *QWidget) Hide() {
 type QWidget struct {
 	*qtcore.QObject
 }
+type QWidgetITF interface {
+	QWidgetPTR() *QWidget
+}
+
+func (me *QWidget) QWidgetPTR() *QWidget { return me }
 
 func QWidgetFromptr(ptr voidptr) *QWidget {
 	me := &QWidget{qtcore.QObjectFromptr(ptr)}
 	return me
 }
+
 func (me *QWidget) Dtor() {
 	qtrt.Callany0(me)
 }
 
-func NewQWidget(parent *QWidget, f ...int) *QWidget {
+func NewQWidget(parent QWidgetITF, f ...int) *QWidget {
 	var f0 = gopp.FirstofGv(f)
 	rv := qtrt.Callany[voidptr](nil, parent, f0)
 	return QWidgetFromptr(rv)
 }
-func (me *QWidget) SetLayout(lo *QLayout) {
+func (me *QWidget) SetLayout(lo QLayoutITF) {
 	qtrt.Callany0(me, lo)
 }
 
@@ -91,7 +97,7 @@ func (me *QMainWindow) Dtor() {
 	qtrt.Callany0(me)
 }
 
-func NewQMainWindow(parent *QWidget, flags int) *QMainWindow {
+func NewQMainWindow(parent QWidgetITF, flags int) *QMainWindow {
 	// log.Println(qtclzsz.Get("QMainWindow"))
 	cthis := qtrt.Callany[voidptr](nil, parent, flags)
 	return QMainWindowFromptr(cthis)
@@ -103,6 +109,13 @@ func (me *QMainWindow) CentralWidget() (w *QWidget) {
 	return
 }
 
-func (me *QMainWindow) SetCentralWidget(w *QWidget) {
+func (me *QMainWindow) SetCentralWidget(w QWidgetITF) {
 	qtrt.Callany0(me, w)
+}
+
+type QToolBar struct {
+	*QWidget
+}
+
+type QStatusBar struct {
 }
