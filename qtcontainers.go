@@ -47,6 +47,13 @@ func (me *QStackedWidget) CurrentIndex() int {
 func (me *QStackedWidget) SetCurrentIndex(idx int) {
 	qtrt.Callany[int](me, idx)
 }
+func (me *QStackedWidget) SetCurrentWidget(w QWidgetITF) {
+	qtrt.Callany[int](me, w)
+}
+func (me *QStackedWidget) IndexOf(w QWidgetITF) int {
+	rv := qtrt.Callany[int](me, w)
+	return rv
+}
 func (me *QStackedWidget) Count() int {
 	rv := qtrt.Callany[int](me)
 	return rv

@@ -7,12 +7,17 @@ import (
 )
 
 type QApplication struct {
-	*qtcore.QObject
+	*qtcore.QGuiApplication
 }
 
 func QApplicationFromptr(ptr voidptr) *QApplication {
-	me := &QApplication{qtcore.QObjectFromptr(ptr)}
+	me := &QApplication{qtcore.QGuiApplicationFromptr(ptr)}
 	return me
+}
+
+func QApp() *QApplication { return (*QApplication)(nil).Instance() }
+func (me *QApplication) Instance() *QApplication {
+	return QApplicationFromptr(qtcore.QCoreApplication_Instance().GetCthis())
 }
 
 // QApplication::QApplication(int&, char**, int)
@@ -28,6 +33,13 @@ func (me *QApplication) Exec() int {
 func (me *QApplication) Exit(code int) {
 	qtrt.Callany0(me)
 }
+func (me *QApplication) SetStyleSheet(s string) {
+	qtrt.Callany0(me, s)
+}
+func (me *QApplication) AboutQt() {
+	QApplication_aboutQt()
+}
+func QApplication_aboutQt() { qtrt.Callany0(nil) }
 
 func (me *QWidget) Show() {
 	qtrt.Callany0(me)
@@ -62,6 +74,13 @@ func NewQWidget(parent QWidgetITF, f ...int) *QWidget {
 func (me *QWidget) SetLayout(lo QLayoutITF) {
 	qtrt.Callany0(me, lo)
 }
+func (me *QWidget) Resize(w, h int)            { qtrt.Callany0(me, w, h) }
+func (me *QWidget) SetVisible(b bool)          { qtrt.Callany0(me, b) }
+func (me *QWidget) SetHidden(b bool)           { qtrt.Callany0(me, b) }
+func (me *QWidget) IsVisible() bool            { return qtrt.Callany[bool](me) }
+func (me *QWidget) SetWindowOpacity(v float64) { qtrt.Callany0(me, v) }
+func (me *QWidget) SetToolTip(v string)        { qtrt.Callany0(me, v) }
+func (me *QWidget) SetStatusTip(v string)      { qtrt.Callany0(me, v) }
 
 // size=8
 type QSize struct {
